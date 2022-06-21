@@ -1,0 +1,85 @@
+.dashboard-page {
+  & .container-fluid {
+    padding: 30px;
+  }
+  @include max-width(1000px) {
+    & .container-fluid {
+      padding: 5px;
+    }
+  }
+}
+
+.dashboard-box {
+  & .box {
+    background: $color-13;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 34px 24px 22px;
+    position: relative;
+    & .box-icon {
+      @include width-height(60px, 60px);
+      @include flex-center;
+      border-radius: 8px;
+      color: $color-13;
+      &.box-1 {
+        background: $box-color-1;
+      }
+      &.box-2 {
+        background: $box-color-2;
+      }
+      &.box-3 {
+        background: $box-color-3;
+      }
+      &.box-4 {
+        background: $box-color-4;
+      }
+    }
+    & .box-content {
+      margin-left: 10px;
+      flex-grow: 1;
+      font-weight: 500;
+
+      & .box-counter {
+        font-size: 20px;
+        line-height: 24px;
+        color: #182524;
+      }
+      & .box-title {
+        font-size: 15px;
+        line-height: 18px;
+        color: #6b7373;
+      }
+    }
+    .box-action {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(-24px, 20px);
+      font-size: 20px;
+      &__button {
+        background: transparent;
+        border: none;
+      }
+    }
+  }
+}
+
+.dashboard-chart {
+  &__left,
+  &__right {
+    border: 1px solid $color-border-secondary;
+    border-radius: 8px;
+    background: $color-13;
+  }
+}
+
+.dashboard-table {
+  &__left,
+  &__right {
+    background: $color-13;
+    border-radius: 8px;
+    padding: 30px 30px 20px;
+    @include table-styled;
+  }
+}

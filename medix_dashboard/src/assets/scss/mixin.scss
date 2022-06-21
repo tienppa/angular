@@ -47,3 +47,35 @@
   border: none;
   outline: none;
 }
+
+@mixin table-styled() {
+  table {
+    border-collapse: unset;
+    & caption {
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 22px;
+      color: #182524;
+    }
+    & thead tr,
+    & tbody tr {
+      padding: 0 16px;
+    }
+    & thead tr {
+      border-bottom: transparent;
+    }
+    & thead tr th {
+      background-color: #fafafa;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      color: #5f6868;
+    }
+    & tbody tr td {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 17px;
+      color: #737b7b;
+    }
+  }
+}

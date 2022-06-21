@@ -1,0 +1,20 @@
+.department-page {
+  padding: 30px;
+}
+
+.department-bar {
+  @include width-height(100%, 300px);
+  background: $color-13;
+  border-radius: 8px;
+}
+
+.department-doughnut {
+  @include width-height(100%, 300px);
+  background: $color-13;
+  border-radius: 8px;
+}
+
+.department-table {
+  background: $color-13;
+  border-radius: 8px;
+}
