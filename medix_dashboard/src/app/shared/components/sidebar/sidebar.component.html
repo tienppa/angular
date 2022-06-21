@@ -1,0 +1,43 @@
+<div class="sidebar">
+  <a class="sidebar-logo">
+    <img
+      class="sidebar-logo__brand"
+      srcset="../../../../assets/images/logo.png 2x"
+      alt="logo"
+    />
+    <span class="sidebar-logo__text">
+      Medix<span class="sidebar-logo__dots">.</span>
+    </span>
+  </a>
+  <div class="sidebar-action">
+    <ul class="sidebar-action__menu">
+      <li class="sidebar-action__item active" *ngFor="let item of menu">
+        <a class="sidebar-action__link" [routerLink]="item.routerLink">
+          <i class="sidebar-action__icon" [ngClass]="item.icon"></i>
+          <span class="sidebar-action__text">{{ item.title }}</span>
+        </a>
+      </li>
+      <li class="sidebar-action__item">
+        <button class="sidebar-action__btn btn border">
+          <i class="bi bi-plus"></i>
+          <span>Create Patients</span>
+        </button>
+      </li>
+    </ul>
+    <ul class="sidebar-action__menu">
+      <li>
+        <img
+          class="sidebar-action__img"
+          src="../../../../assets/images/work.png"
+          alt=""
+        />
+      </li>
+      <li class="sidebar-action__item">
+        <a class="sidebar-action__link" routerLink="settings">
+          <i class="sidebar-action__icon bi bi-gear-fill"></i>
+          <span class="sidebar-action__text">Settings</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

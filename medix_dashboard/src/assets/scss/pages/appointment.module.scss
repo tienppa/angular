@@ -1,0 +1,83 @@
+.appointment-page {
+  width: 100%;
+  padding: 30px;
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    & h4 {
+      display: inline-block;
+      margin: 0;
+      @include font-heading;
+    }
+  }
+  &__action {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    & button {
+      border: #9fa0aa;
+      @include button-style;
+    }
+    & button:last-child {
+      background: $color-1;
+      color: $color-13;
+    }
+  }
+  @include max-width(1000px) {
+    padding: 5px;
+  }
+}
+
+.appointment-table {
+  &.table {
+    & > :not(:first-child) {
+      border-top: 0;
+    }
+    font-weight: 500;
+    thead {
+      tr {
+        background-color: #fafafa;
+        th {
+          padding: 15px;
+          font-size: 16px;
+          line-height: 19px;
+          color: #5f6868;
+        }
+      }
+    }
+    tbody {
+      tr {
+        td {
+          font-size: 13px;
+          line-height: 16px;
+          color: #737b7b;
+          padding: 15px;
+          vertical-align: middle;
+          img {
+            width: 40px;
+            height: 40px;
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+  }
+  &__action {
+    display: inline-flex;
+    align-items: center;
+    font-size: 18px;
+    & button {
+      @include button-icon;
+      background-color: transparent;
+      margin-right: 10px;
+      &:nth-child(1),
+      &:nth-child(2) {
+        color: $color-1;
+      }
+      &:last-child {
+        color: $color-4;
+      }
+    }
+  }
+}

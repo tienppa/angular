@@ -1,0 +1,66 @@
+<div class="doctor-list mt-3">
+  <div class="container-fluid p-0">
+    <div class="row g-2">
+      <div
+        class="col-12 col-xxl-3 col-xl-4 col-lg-4 col-md-6"
+        *ngFor="let item of [1, 2, 3, 4, 5, 6, 7, 8]"
+      >
+        <div class="doctor-card card">
+          <div class="card-body">
+            <img
+              class="doctor-card__img"
+              src="./assets/images/user.svg"
+              alt="..."
+            />
+            <div class="doctor-card__top">
+              <span>Card title</span>
+              <span>MBBS, M.D of Medicine</span>
+              <span>Cardiologist</span>
+            </div>
+            <div class="doctor-card__bottom">
+              <span>Phone: + (123) 1800-567</span>
+              <span>Email: jacad@gmail.com</span>
+            </div>
+            <div class="doctor-card__dots dropdown">
+              <a
+                class="btn"
+                type="button"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="bi bi-three-dots"></i>
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="dropdownMenuButton1"
+              >
+                <li><a class="dropdown-item" href="#">Edit</a></li>
+                <li><a class="dropdown-item" href="#">Remove</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="doctor-pagination row">
+      <nav class="d-flex justify-content-center mt-5">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
