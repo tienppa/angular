@@ -1,0 +1,111 @@
+.dashboard-box {
+  & .dashboard-card {
+    display: flex;
+    align-items: center;
+    height: 118px;
+    border-radius: 8px;
+    position: relative;
+    padding: 24px 23px;
+    background: $color-13;
+    gap: 20px;
+    &__icon {
+      @include width-height(60px, 60px);
+      @include flex-center;
+      border-radius: 8px;
+      border: 1px solid $color-border-primary;
+      color: $color-13;
+      font-size: 20px;
+      &.box-1 {
+        background: $box-color-1;
+      }
+      &.box-2 {
+        background: $box-color-2;
+      }
+      &.box-3 {
+        background: $box-color-3;
+      }
+      &.box-4 {
+        background: $box-color-4;
+      }
+    }
+    &__content {
+      flex-grow: 1;
+    }
+    &__button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(-12px, 12px);
+      & button {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        @include icon-styled(40px, 40px);
+      }
+    }
+  }
+}
+
+.dashboard-table {
+  .table-wrapper {
+    background: $color-13;
+    padding: 28px;
+    border-radius: 8px;
+    height: 100%;
+    & table {
+      width: 100%;
+      & caption {
+        @include font-styled(18px, 600, 22px);
+        color: $color-20;
+      }
+      & > :not(:first-child) {
+        border-top: 0;
+      }
+      & thead th {
+        height: 55px;
+        vertical-align: middle;
+        color: #5f6868;
+        background: $color-19;
+        @include font-styled(16px, 500, 19px);
+        &:first-child {
+          border-radius: 8px 0 0 8px;
+        }
+        &:last-child {
+          border-radius: 0 8px 8px 0;
+        }
+      }
+      & tbody th,
+      & tbody td {
+        height: 55px;
+        vertical-align: middle;
+        color: #737b7b;
+        @include font-styled(13px, 500, 16px);
+        & img {
+          background-position: center;
+          background-repeat: no-repeat;
+          @include avatar-styled(40px, 40px);
+        }
+        & .btn-edit,
+        & .btn-user,
+        & .btn-remove {
+          @include icon-styled(30px, 30px);
+          display: inline-flex;
+          margin-right: 10px;
+          color: $color-1;
+        }
+        & .btn-remove {
+          color: $color-10;
+        }
+      }
+    }
+  }
+}
+
+.dashboard-chart {
+  & .chart-wrapper {
+    min-height: 364px;
+    background-color: $color-13;
+    padding: 28px;
+    border-radius: 8px;
+  }
+}

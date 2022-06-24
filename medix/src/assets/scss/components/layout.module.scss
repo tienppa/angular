@@ -1,0 +1,29 @@
+.dashboard {
+  @include width-height(100%, 100vh);
+  position: relative;
+  &-menu {
+    width: $menu-max-width;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: $background-menu-light;
+    border-right: 1px solid $color-border-primary;
+  }
+  &-body {
+    position: absolute;
+    width: calc(100% - $menu-max-width);
+    min-height: 100vh;
+    left: $menu-max-width;
+    background: $background-body-light;
+  }
+  @include max-width(1000px) {
+    &-menu {
+      width: $menu-min-width;
+    }
+    &-body {
+      width: calc(100% - $menu-min-width);
+      left: $menu-min-width;
+    }
+  }
+}

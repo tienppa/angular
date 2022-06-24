@@ -1,0 +1,81 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+  height: 100vh;
+  &-logo {
+    display: flex;
+    align-items: center;
+    padding: 10px 10px 0;
+    @include font-styled(24px, 600, 29px);
+    &__brand {
+      @include icon-styled(34px, 34px);
+    }
+    &__text {
+      color: $color-1;
+      margin-left: 20px;
+    }
+    &__dots {
+      color: $color-2;
+    }
+  }
+  &-action {
+    height: calc(100vh - 54px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  &-menu {
+    padding: 0;
+    margin-top: 40px;
+    &__item {
+      height: 44px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      border-radius: 8px;
+      &.active {
+        background: $color-1;
+        .sidebar-menu__link {
+          color: $color-13;
+        }
+      }
+      &:hover:not(:last-child) {
+        background: $color-12;
+        .sidebar-menu__link {
+          color: $color-1;
+        }
+      }
+    }
+    &__link {
+      padding: 0 18px;
+      @include font-styled(13px, 500, 16px);
+      color: #61677f;
+      display: flex;
+      align-items: center;
+    }
+    &__icon {
+      font-size: 20px;
+    }
+    &__text {
+      margin-left: 20px;
+    }
+    &__button {
+      padding: 12px 20px;
+      margin-left: 18px;
+      border-radius: 8px;
+      background: $color-12;
+      @include font-styled(13px, 600, 16px);
+      @include flex-center;
+      & i {
+        font-size: 18px;
+      }
+      & span {
+        margin-left: 10px;
+      }
+    }
+    &__img {
+      margin-left: 18px;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+// @import "~bootstrap/scss/bootstrap";
+@import "assets/scss/index.scss";
+
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: #61677f;
+}
+
+a {
+  text-decoration: none;
+}
+
+ol,
+ul {
+  list-style: none;
+}

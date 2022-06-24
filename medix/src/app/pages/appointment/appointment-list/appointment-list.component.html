@@ -1,0 +1,102 @@
+<div class="appointment-wrapper">
+  <div class="container-fluid">
+    <div class="appointment-heading mb-3">
+      <h4 class="appointment-heading__title">Doctors</h4>
+      <div class="appointment-heading__action">
+        <div class="dropdown">
+          <button
+            class="btn btn-light dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            All Statuses
+          </button>
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="dropdownMenuButton1"
+          >
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </div>
+
+        <div class="dropdown">
+          <button
+            class="btn btn-light dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            All Cabinets
+          </button>
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="dropdownMenuButton1"
+          >
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </div>
+
+        <button class="btn">New Appointment</button>
+      </div>
+    </div>
+
+    <div class="appointment-table">
+      <div class="row">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead class="bg-light">
+              <tr>
+                <th scope="col">Patient</th>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Phone number</th>
+                <th scope="col">Action</th>
+                <th scope="col">Appointment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of [1, 2, 3, 4, 5]">
+                <td>
+                  <img
+                    src="./assets/images/user.sv"
+                    onerror="this.src='./assets/images/error.png'"
+                    alt=""
+                  />
+                  Mark
+                </td>
+                <td>09:00</td>
+                <td>28 May 2021</td>
+                <td>Male</td>
+                <td>888-452-420</td>
+                <td>
+                  <button class="btn btn-edit">
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                  <button class="btn btn-user">
+                    <i class="bi bi-person"></i>
+                  </button>
+                  <button class="btn btn-remove">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+                <td>
+                  <span class="badge rounded-pill text-danger"
+                    >Start Appointment</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
