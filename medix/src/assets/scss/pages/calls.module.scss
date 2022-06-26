@@ -1,0 +1,41 @@
+.call-nav {
+  &__heading {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    & button {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      color: #333333;
+      padding: 0;
+      border: none;
+      outline: none;
+      background: transparent;
+    }
+  }
+
+  &__list {
+    padding: 0;
+    .call-item {
+      &__link {
+        display: flex;
+        align-items: flex-start;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        color: #3b5180;
+      }
+      &__content {
+        .content-desc {
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+          &__icon {
+            @include width-height(12px, 12px);
+          }
+        }
+      }
+    }
+  }
+}

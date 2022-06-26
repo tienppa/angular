@@ -1,3 +1,53 @@
-<p>
-  department-table works!
-</p>
+<div class="department-table">
+  <div class="container-fluid">
+    <div class="table-responsive">
+      <table class="table caption-top">
+        <caption>
+          <div class="d-flex align-items-center justify-content-between">
+            <span>Department List</span>
+            <button class="btn btn-primary">Add Department</button>
+          </div>
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Department Name</th>
+            <th scope="col">Doctor</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Head Of Department</th>
+            <th scope="col">Action</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of [1, 2, 3, 4, 5, 6]">
+            <th>ICU</th>
+            <td>
+              <img
+                src="./assets/images/user.svg"
+                onerror="this.src='./assets/images/error.png'"
+                alt=""
+              />
+              Kicker Nicil
+            </td>
+            <td>Male</td>
+            <td>Heidry kon</td>
+            <td>
+              <button class="btn btn-edit">
+                <i class="bi bi-pencil-square"></i>
+              </button>
+              <button class="btn btn-user">
+                <i class="bi bi-person"></i>
+              </button>
+              <button class="btn btn-remove">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+            <td>
+              <span class="table-label" data-status="active">Active</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

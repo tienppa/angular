@@ -1,0 +1,17 @@
+.department-table {
+  border-radius: 8px;
+  background: $color-13;
+  padding: 30px;
+  @include table-styled(60px, $color-21, 70px, $color-22);
+  & .btn-edit,
+  & .btn-user {
+    color: $color-1;
+  }
+  & .btn-remove {
+    color: $color-2;
+  }
+  .table-label {
+    @include font-styled(12px, 400, 15px);
+    @include label-styled;
+  }
+}

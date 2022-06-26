@@ -28,11 +28,11 @@ const routes: Routes = [
         (md) => md.DashboardModule
       ),
   },
-  // {
-  //   path: 'calls',
-  //   loadChildren: () =>
-  //     import('./pages/calls/calls.module').then((md) => md.CallsModule),
-  // },
+  {
+    path: 'calls',
+    loadChildren: () =>
+      import('./pages/calls/calls.module').then((md) => md.CallsModule),
+  },
   {
     path: '',
     redirectTo: '/dashboard',

@@ -43,27 +43,62 @@
   border-radius: 50%;
 }
 
-@mixin label-styled(
-  $font-size,
-  $font-weight,
-  $line-height,
-  $color,
-  $bg,
-  $radius
-) {
-  @include flex-center;
-  @include font-styled(
-    $font-size,
-    $font-weight,
-    $line-height,
-    $color,
-    $pdx,
-    $pdy
-  );
-  background: $bg;
-  border-radius: $radius;
-  padding: $pdx $pdy;
+@mixin table-styled($thead-height, $thead-color, $tbody-height, $tbody-color) {
+  & table {
+    width: 100%;
+    & > :not(:first-child) {
+      border-top: 0;
+    }
+    & caption {
+      & span {
+        @include font-styled(18px, 600, 22px);
+        color: $color-20;
+      }
+    }
+    & thead th {
+      height: $thead-height;
+      vertical-align: middle;
+      color: $thead-color;
+      background: $color-19;
+      @include font-styled(16px, 500, 19px);
+      &:first-child {
+        border-radius: 8px 0 0 8px;
+      }
+      &:last-child {
+        border-radius: 0 8px 8px 0;
+      }
+    }
+    & tbody th,
+    & tbody td {
+      height: $tbody-height;
+      vertical-align: middle;
+      color: $tbody-color;
+      @include font-styled(14px, 500, 17px);
+      & img {
+        background-position: center;
+        background-repeat: no-repeat;
+        @include avatar-styled(40px, 40px);
+        margin-right: 10px;
+      }
+      & button {
+        @include icon-styled(30px, 30px);
+        display: inline-flex;
+        margin-right: 10px;
+      }
+    }
+  }
 }
 
-@mixin table-styled() {
+@mixin label-styled() {
+  &[data-status="active"] {
+    color: $color-active;
+    background: rgba($color-active, 0.05);
+  }
+  &[data-status="inactive"] {
+    color: $color-inactive;
+    background: rgba($color-inactive, 0.05);
+  }
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 8px;
 }
