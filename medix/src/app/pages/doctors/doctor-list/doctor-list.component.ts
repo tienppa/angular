@@ -3,6 +3,11 @@ import { Router } from '@angular/router';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { DoctorModel } from 'src/app/shared/models/doctor.model';
 import { DoctorService } from 'src/app/shared/services/doctor.service';
+import {
+  NgbModalConfig,
+  NgbModal,
+  NgbModalRef,
+} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-doctor-list',
@@ -13,8 +18,15 @@ export class DoctorListComponent extends BaseComponent implements OnInit {
   public items: DoctorModel.DoctorInfo[] = [];
   public id!: string;
 
-  constructor(private doctorService: DoctorService, private router: Router) {
+  constructor(
+    private doctorService: DoctorService,
+    private router: Router,
+    config: NgbModalConfig,
+    private modalService: NgbModal
+  ) {
     super();
+    config.backdrop = 'static';
+    config.keyboard = false;
   }
 
   ngOnInit() {
@@ -54,5 +66,14 @@ export class DoctorListComponent extends BaseComponent implements OnInit {
 
   goToAdd() {
     this.router.navigate(['doctors', 'add']);
+  }
+
+  open(content: any) {
+    this.modalService.open(content);
+  }
+
+  close(content: any) {
+    console.log(content);
+    // this.modalService.dismissAll(content);
   }
 }

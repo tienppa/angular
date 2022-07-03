@@ -26,16 +26,4 @@ export class DoctorsComponent extends BaseComponent implements OnInit {
       },
     });
   }
-
-  public addDoctor(data: DoctorRequest.CreateDoctor): void {
-    const me = this;
-    me.doctorService.createDoctor(data).subscribe({
-      next: (res) => {
-        me.getDoctors();
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
 }

@@ -99,6 +99,9 @@
 
   &__form {
     @include font-styled(14px, 400, 17px);
+    & input {
+      @include font-styled(14px, 400, 30px);
+    }
     .preview {
       padding: 50px 0;
       img {
@@ -106,4 +109,18 @@
       }
     }
   }
+}
+
+.doctor-modify {
+  @include font-styled(14px, 400, 17px);
+  & input {
+    @include font-styled(14px, 400, 30px);
+  }
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus {
+  outline: none;
+  box-shadow: none;
 }

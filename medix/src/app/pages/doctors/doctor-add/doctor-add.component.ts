@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DoctorRequest } from 'src/app/shared/models/request/doctor.request';
+import { DoctorService } from 'src/app/shared/services/doctor.service';
 
 @Component({
   selector: 'app-doctor-add',
@@ -34,7 +36,11 @@ export class DoctorAddComponent implements OnInit {
     phone: 'Phone is not valid',
   };
 
-  constructor(private builder: FormBuilder) {}
+  constructor(
+    private builder: FormBuilder,
+    private doctorService: DoctorService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     const me = this;
@@ -48,9 +54,7 @@ export class DoctorAddComponent implements OnInit {
         ...me.doctorForm.value,
         avt: me.avt,
       };
-      console.log(data);
-
-      me.addDoctor$.emit(data);
+      me.addDoctor(data);
     }
   }
 
@@ -85,6 +89,18 @@ export class DoctorAddComponent implements OnInit {
         me.valueControlName.phone,
         [Validators.required],
       ],
+    });
+  }
+
+  public addDoctor(data: DoctorRequest.CreateDoctor): void {
+    const me = this;
+    me.doctorService.createDoctor(data).subscribe({
+      next: (res) => {
+        me.router.navigate(['doctors']);
+      },
+      error: (err) => {
+        console.log(err);
+      },
     });
   }
 }

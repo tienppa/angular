@@ -39,7 +39,7 @@
               class="dropdown-menu dropdown-menu-end"
               aria-labelledby="dropdownMenuButton1"
             >
-              <li><a class="dropdown-item">Edit</a></li>
+              <li><a class="dropdown-item" (click)="open(content)">Edit</a></li>
               <li>
                 <a class="dropdown-item" (click)="removeDoctor(item.id)"
                   >Remove</a
@@ -52,3 +52,6 @@
     </div>
   </div>
 </div>
+<ng-template #content (closeModal$)="close($event)">
+  <app-doctor-modify></app-doctor-modify>
+</ng-template>
