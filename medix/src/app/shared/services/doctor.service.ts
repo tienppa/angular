@@ -8,27 +8,41 @@ import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class DoctorService extends BaseService {
-
   constructor(httpClient: HttpClient) {
     super(httpClient);
   }
 
   public getDoctors(): Observable<DoctorResponse.GetDoctors> {
     const me = this;
-    if (environment.mockApi) {
-      const url = 'assets/data/doctors.json';
+    if (!environment.baseUrl) {
+      const url = './assets/data/doctors.json';
       return me.httpClient.get<DoctorResponse.GetDoctors>(url);
     } else {
-      const uri = '/api/doctors';
+      const uri = '/doctors';
       return me.get(uri);
     }
   }
 
-  public createDoctor(request: DoctorRequest.CreateDoctor): Observable<DoctorResponse.CreateDoctor> {
+  public createDoctor(
+    request: DoctorRequest.CreateDoctor
+  ): Observable<DoctorResponse.CreateDoctor> {
     const me = this;
-    const uri = '/api/doctors';
+    const uri = '/doctors';
     return me.post(uri, request);
   }
+
+  public removeDoctor(id: string): Observable<DoctorResponse.DeleteDoctor> {
+    const me = this;
+    const uri = `/doctors/${id}`;
+    return me.delete(uri);
+  }
+
+  public updateDoctor(
+    id: string,
+    data: DoctorRequest.UpdateDoctor
+  ): Observable<DoctorResponse.UpdateDoctor> {
+    const me = this;
+    const uri = `/doctors/${id}`;
+    return me.put(uri, data);
+  }
 }
-
-

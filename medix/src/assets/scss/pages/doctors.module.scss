@@ -1,4 +1,4 @@
-.doctor-wrapper {
+.doctor-page {
   .doctor-heading {
     display: flex;
     align-items: center;
@@ -20,7 +20,9 @@
       }
     }
   }
+}
 
+.doctor-wrapper {
   .doctor-content {
     &__card {
       background: $color-13;
@@ -75,6 +77,32 @@
       & button {
         @include icon-styled(30px, 30px);
         background: transparent;
+      }
+    }
+  }
+}
+
+.doctor-add {
+  &__heading {
+    & button {
+      color: $color-13;
+      background: $color-1;
+      @include flex-center;
+      @include font-styled(16px, 500, 19px);
+      padding: 13px 15px;
+      border-radius: 8px;
+      & span {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  &__form {
+    @include font-styled(14px, 400, 17px);
+    .preview {
+      padding: 50px 0;
+      img {
+        @include width-height(100px, 100px);
       }
     }
   }

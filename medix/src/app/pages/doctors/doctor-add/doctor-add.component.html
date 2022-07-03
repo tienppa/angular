@@ -1,0 +1,122 @@
+<div class="doctor-add">
+  <div class="doctor-add__heading mb-4">
+    <button class="btn">
+      <i class="bi bi-back"></i>
+      <span>Back</span>
+    </button>
+  </div>
+  <div class="doctor-add__form bg-light rounded">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-md-8 border-end ps-4 pe-5 py-4">
+          <form
+            [formGroup]="doctorForm"
+            (ngSubmit)="onSubmit()"
+            autocomplete="off"
+            class="needs-validation was-invalidated"
+          >
+            <div class="mb-4 row">
+              <label [for]="controlNames.name" class="col-sm-2 col-form-label"
+                >Name
+              </label>
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  [id]="controlNames.name"
+                  [innerMsg]="msg"
+                  [formControlName]="controlNames.name"
+                />
+              </div>
+            </div>
+            <div class="mb-4 row">
+              <label
+                [for]="controlNames.address"
+                class="col-sm-2 col-form-label"
+                >Address</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  [id]="controlNames.address"
+                  [innerMsg]="msg"
+                  [formControlName]="controlNames.address"
+                />
+              </div>
+            </div>
+            <div class="mb-4 row">
+              <label
+                [for]="controlNames.position"
+                class="col-sm-2 col-form-label"
+                >Position</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  [id]="controlNames.position"
+                  [innerMsg]="msg"
+                  [formControlName]="controlNames.position"
+                />
+              </div>
+            </div>
+            <div class="mb-4 row">
+              <label [for]="controlNames.phone" class="col-sm-2 col-form-label"
+                >Phone</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  [id]="controlNames.phone"
+                  [innerMsg]="msg"
+                  [formControlName]="controlNames.phone"
+                />
+              </div>
+            </div>
+            <div class="mb-4 row">
+              <label [for]="controlNames.email" class="col-sm-2 col-form-label"
+                >Email</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  [id]="controlNames.email"
+                  [innerMsg]="msg"
+                  [formControlName]="controlNames.email"
+                />
+              </div>
+            </div>
+            <div class="mb-4 row">
+              <label [for]="avt" class="col-sm-2 col-form-label">Avatar</label>
+              <div class="col-sm-10">
+                <input
+                  class="form-control"
+                  type="file"
+                  [name]="avt"
+                  [id]="avt"
+                  accept="image/*"
+                  (change)="selectFile($event)"
+                />
+              </div>
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="!doctorForm.valid"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+        <div class="preview col-12 col-md-4">
+          <div class="d-flex align-items-center justify-content-center">
+            <img [src]="avt" class="rounded d-block" alt="..." />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

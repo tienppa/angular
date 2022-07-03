@@ -1,51 +1,51 @@
 <div class="doctor-wrapper">
-  <div class="container-fluid">
-    <div class="doctor-heading mb-3">
-      <h4 class="doctor-heading__title">Doctors</h4>
-      <button class="doctor-heading__button btn">
-        <i class="bi bi-plus-lg"></i>
-        <span>Add Doctor</span>
-      </button>
-    </div>
+  <div class="doctor-heading mb-3">
+    <h4 class="doctor-heading__title">Doctors</h4>
+    <a class="doctor-heading__button btn" (click)="goToAdd()">
+      <i class="bi bi-plus-lg"></i>
+      <span>Add Doctor</span>
+    </a>
+  </div>
 
-    <div class="doctor-content">
-      <div class="row gy-3">
-        <div class="col-12 col-md-3" *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]">
-          <div class="doctor-content__card">
-            <img
-              src="./assets/images/avt.svg"
-              alt=""
-              class="doctor-content__avatar"
-            />
-            <div class="doctor-content__heading">
-              <h5 class="heading-name">Dr.Jacad Monie</h5>
-              <span class="heading-desc">MBBS, M.D of Medicine</span>
-              <span class="heading-position">Cardiologist</span>
-            </div>
-            <div class="doctor-content__footer">
-              <span class="heading-phone">Phone: + (123) 1800-567</span>
-              <span class="heading-email">Email: jacad@gmail.com</span>
-            </div>
-            <div class="doctor-content__action dropdown">
-              <button
-                type="button"
-                id="dropdownMenuButton1"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <i class="bi bi-three-dots"></i>
-              </button>
-              <ul
-                class="dropdown-menu dropdown-menu-end"
-                aria-labelledby="dropdownMenuButton1"
-              >
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
-              </ul>
-            </div>
+  <div class="doctor-content">
+    <div class="row gy-3">
+      <div class="col-12 col-md-3" *ngFor="let item of items; index as idx">
+        <div class="doctor-content__card">
+          <img
+            [src]="item.avt"
+            alt="photo"
+            onerror="this.onerror=null;this.src='./assets/images/avt.svg';"
+            class="doctor-content__avatar"
+          />
+          <div class="doctor-content__heading">
+            <h5 class="heading-name">{{ item.name }}</h5>
+            <span class="heading-desc">{{ item.address }}</span>
+            <span class="heading-position">{{ item.position }}</span>
+          </div>
+          <div class="doctor-content__footer">
+            <span class="heading-phone">Phone: {{ item.phone }}</span>
+            <span class="heading-email">Email: {{ item.email }}</span>
+          </div>
+          <div class="doctor-content__action dropdown">
+            <button
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="bi bi-three-dots"></i>
+            </button>
+            <ul
+              class="dropdown-menu dropdown-menu-end"
+              aria-labelledby="dropdownMenuButton1"
+            >
+              <li><a class="dropdown-item">Edit</a></li>
+              <li>
+                <a class="dropdown-item" (click)="removeDoctor(item.id)"
+                  >Remove</a
+                >
+              </li>
+            </ul>
           </div>
         </div>
       </div>

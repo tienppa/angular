@@ -1,0 +1,16 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+  </div>
+  <div class="modal-body">
+    <ng-content></ng-content>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="c('Save click')">
+      Save
+    </button>
+    <button type="button" class="btn btn-danger" (click)="d('Cross click')">
+      Close
+    </button>
+  </div>
+</ng-template>

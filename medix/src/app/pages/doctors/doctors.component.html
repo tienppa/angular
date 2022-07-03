@@ -1,4 +1,14 @@
-<div class="dashboard-page p-4">
-  <app-doctor-list></app-doctor-list>
-  <app-doctor-modify></app-doctor-modify>
+<div class="doctor-page p-4">
+  <div class="container-fluid">
+    <!-- <app-doctor-list
+      [items]="items"
+      (removeDoctor$)="removeDoctor($event)"
+    ></app-doctor-list> -->
+    <!-- <ng-template #content let-modal>
+      <app-doctor-modify></app-doctor-modify>
+    </ng-template> -->
+    <router-outlet></router-outlet>
+  </div>
 </div>
+
+<!-- (click)="open(content)" -->

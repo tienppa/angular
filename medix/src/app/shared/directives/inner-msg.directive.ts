@@ -13,7 +13,6 @@ const CLASS_NAME_MSG = 'inner-msg-error';
   selector: '[innerMsg]',
 })
 export class InnerMsgDirective implements OnInit, OnDestroy {
-
   private destroy$ = new Subject<void>();
 
   @Input()
@@ -22,9 +21,7 @@ export class InnerMsgDirective implements OnInit, OnDestroy {
   @Input()
   singleKey = true;
 
-  constructor(private el: ElementRef, private ngControl: NgControl) {
-
-  }
+  constructor(private el: ElementRef, private ngControl: NgControl) {}
   ngOnDestroy(): void {
     const me = this;
     me.destroy$.next();
@@ -35,11 +32,9 @@ export class InnerMsgDirective implements OnInit, OnDestroy {
     if (!me.ngControl) {
       throw new Error(`Not found NgControl`);
     }
-    me.ngControl.valueChanges?.pipe(takeUntil(me.destroy$)).subscribe(
-      _ => {
-        me.detectRenderMsg();
-      }
-    );
+    me.ngControl.valueChanges?.pipe(takeUntil(me.destroy$)).subscribe((_) => {
+      me.detectRenderMsg();
+    });
     (me.el.nativeElement as HTMLElement).addEventListener('blur', () => {
       me.detectRenderMsg();
     });
@@ -47,7 +42,9 @@ export class InnerMsgDirective implements OnInit, OnDestroy {
 
   private detectRenderMsg() {
     const me = this;
-    const existInnerMsg = (me.el.nativeElement as HTMLElement).parentElement?.querySelector(`.${CLASS_NAME_MSG}`);
+    const existInnerMsg = (
+      me.el.nativeElement as HTMLElement
+    ).parentElement?.querySelector(`.${CLASS_NAME_MSG}`);
     if (existInnerMsg) {
       me.removeInnerMsg();
     }
@@ -78,8 +75,7 @@ export class InnerMsgDirective implements OnInit, OnDestroy {
     const div = document.createElement('div');
     div.classList.add(CLASS_NAME_MSG);
     div.innerHTML = `
-      <lable>Icon here ^_^</lable>
-      <span style='color: red'>${msg}</span>
+      <span style='color: #dc3545; font-size: .875em'>${msg}</span>
     `;
     const me = this;
     (me.el.nativeElement as HTMLElement).parentElement?.appendChild(div);
@@ -89,7 +85,7 @@ export class InnerMsgDirective implements OnInit, OnDestroy {
     const div = document.createElement('div');
     div.classList.add(CLASS_NAME_MSG);
     let newArrMsg = arrMsg || [];
-    newArrMsg = newArrMsg.map(msg => {
+    newArrMsg = newArrMsg.map((msg) => {
       return `<span>${msg}</span>`;
     });
     const msgInner = newArrMsg.join('<br/>');
@@ -109,5 +105,4 @@ export class InnerMsgDirective implements OnInit, OnDestroy {
       parent?.removeChild(elMsg.item(0) as Element);
     }
   }
-
 }
