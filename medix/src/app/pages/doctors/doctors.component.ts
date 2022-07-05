@@ -15,7 +15,10 @@ export class DoctorsComponent extends BaseComponent implements OnInit {
 
   ngOnInit() {}
 
-  onDestroy(): void {}
+  onDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
   private getDoctors() {
     const me = this;

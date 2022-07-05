@@ -7,6 +7,7 @@ import { DoctorListComponent } from './doctor-list/doctor-list.component';
 import { DoctorModifyComponent } from './doctor-list/doctor-modify/doctor-modify.component';
 import { DoctorsRouters } from './doctors-routing.module';
 import { DoctorsComponent } from './doctors.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const declarations = [
   DoctorsComponent,
@@ -15,7 +16,12 @@ const declarations = [
   DoctorModifyComponent,
 ];
 
-const imports: any = [SharedModule, CommonModule, DoctorsRouters];
+const imports: any = [
+  SharedModule,
+  CommonModule,
+  DoctorsRouters,
+  NgxPaginationModule,
+];
 
 @NgModule({
   imports: [...imports],

@@ -1,0 +1,153 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Appointment</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="close()"
+  ></button>
+</div>
+<div class="modal-body">
+  <form
+    autocomplete="off"
+    id="appointmentForm"
+    [formGroup]="appointmentForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="mb-4 row">
+      <label [for]="controlNames.name" class="col-sm-3 col-form-label"
+        >Name</label
+      >
+      <div class="col-sm-9">
+        <input
+          type="text"
+          class="form-control"
+          [id]="controlNames.name"
+          [innerMsg]="msg"
+          [formControlName]="controlNames.name"
+        />
+      </div>
+    </div>
+    <div class="mb-4 row">
+      <label [for]="controlNames.date" class="col-sm-3 col-form-label"
+        >Date</label
+      >
+      <div class="col-sm-9">
+        <input
+          type="datetime-local"
+          autocomplete="on"
+          class="form-control"
+          [id]="controlNames.date"
+          [innerMsg]="msg"
+          [formControlName]="controlNames.date"
+        />
+      </div>
+    </div>
+    <div class="mb-4 row">
+      <label [for]="controlNames.gender" class="col-sm-3 col-form-label"
+        >Gender</label
+      >
+      <div class="col-sm-9">
+        <input
+          *ngIf="!isAdd"
+          type="text"
+          class="form-control"
+          [id]="controlNames.gender"
+          [innerMsg]="msg"
+          [formControlName]="controlNames.gender"
+        />
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          *ngIf="isAdd"
+          [id]="controlNames.gender"
+          [innerMsg]="msg"
+          [formControlName]="controlNames.gender"
+        >
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="MTF">MTF</option>
+          <option value="Female to Male">Female to Male</option>
+          <option value="Cisgender Man">Cisgender Man</option>
+          <option value="Trans Male">Trans Male</option>
+        </select>
+      </div>
+    </div>
+    <div class="mb-4 row">
+      <label [for]="controlNames.phone" class="col-sm-3 col-form-label"
+        >Phone</label
+      >
+      <div class="col-sm-9">
+        <input
+          type="text"
+          class="form-control"
+          [id]="controlNames.phone"
+          [innerMsg]="msg"
+          [formControlName]="controlNames.phone"
+        />
+      </div>
+    </div>
+    <div class="mb-4 row">
+      <label [for]="controlNames.isAppointment" class="col-sm-3 col-form-label"
+        >Appointment</label
+      >
+      <div class="col-sm-9">
+        <select
+          class="form-select"
+          [id]="controlNames.isAppointment"
+          [innerMsg]="msg"
+          [formControlName]="controlNames.isAppointment"
+        >
+          <option [ngValue]="true">Start Appointment</option>
+          <option [ngValue]="false">Canceled</option>
+        </select>
+      </div>
+    </div>
+    <div class="mb-4 row">
+      <label [for]="controlNames.avatar" class="col-sm-3 col-form-label"
+        >Avatar</label
+      >
+      <div class="col-sm-9">
+        <input
+          class="form-control"
+          type="file"
+          [id]="controlNames.avatar"
+          accept="image/*"
+          (change)="selectFile($event)"
+          hidden
+        />
+        <label [for]="controlNames.avatar">
+          <img
+            [src]="avt"
+            onerror="this.src='./assets/images/no.png'"
+            alt="Update photo"
+            style="width: 60px; height: 60px; border-radius: 50%"
+          />
+        </label>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+    *ngIf="!isAdd && !readonly"
+    type="submit"
+    class="btn btn-primary"
+    form="appointmentForm"
+    [disabled]="!appointmentForm.valid"
+  >
+    Update Appointment
+  </button>
+
+  <button
+    *ngIf="isAdd"
+    type="submit"
+    class="btn btn-primary"
+    form="appointmentForm"
+    [disabled]="!appointmentForm.valid"
+  >
+    Add Appointment
+  </button>
+</div>
+
+<!-- [ngModel]="item.date | slice: 0:16" -->

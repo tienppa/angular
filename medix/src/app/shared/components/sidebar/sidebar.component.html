@@ -11,8 +11,12 @@
   </a>
   <div class="sidebar-action">
     <ul class="sidebar-menu">
-      <li class="sidebar-menu__item" *ngFor="let item of menu">
-        <a class="sidebar-menu__link" [routerLink]="item.routerLink">
+      <li
+        class="sidebar-menu__item"
+        routerLinkActive="active"
+        *ngFor="let item of menu"
+      >
+        <a class="sidebar-menu__link active" [routerLink]="item.routerLink">
           <i class="sidebar-menu__icon" [ngClass]="item.icon"></i>
           <span class="sidebar-menu__text">{{ item.title }}</span>
         </a>

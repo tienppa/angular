@@ -5,44 +5,107 @@
       type="button"
       class="btn-close btn"
       aria-label="Close"
-      (click)="close(true)"
+      (click)="close()"
     ></button>
   </div>
   <div class="modal-body">
-    <form autocomplete="off">
-      <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input
-          type="text"
-          class="form-control"
-          id="name"
-          aria-describedby="emailHelp"
-        />
+    <form
+      autocomplete="off"
+      id="doctorForm"
+      [formGroup]="doctorForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="mb-4 row">
+        <label [for]="controlNames.name" class="col-sm-3 col-form-label"
+          >Name</label
+        >
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            [id]="controlNames.name"
+            [innerMsg]="msg"
+            [formControlName]="controlNames.name"
+          />
+        </div>
       </div>
 
-      <div class="mb-3">
-        <label for="address" class="form-label">Address</label>
-        <input type="text" class="form-control" id="address" />
+      <div class="mb-4 row">
+        <label [for]="controlNames.address" class="col-sm-3 col-form-label"
+          >Address</label
+        >
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            [id]="controlNames.address"
+            [innerMsg]="msg"
+            [formControlName]="controlNames.address"
+          />
+        </div>
       </div>
 
-      <div class="mb-3">
-        <label for="position" class="form-label">Position</label>
-        <input type="text" class="form-control" id="position" />
+      <div class="mb-4 row">
+        <label [for]="controlNames.position" class="col-sm-3 col-form-label"
+          >Position</label
+        >
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            [id]="controlNames.position"
+            [innerMsg]="msg"
+            [formControlName]="controlNames.position"
+          />
+        </div>
       </div>
 
-      <div class="mb-3">
-        <label for="phone" class="form-label">Phone</label>
-        <input type="text" class="form-control" id="phone" />
+      <div class="mb-4 row">
+        <label [for]="controlNames.phone" class="col-sm-3 col-form-label"
+          >Phone</label
+        >
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            [id]="controlNames.phone"
+            [innerMsg]="msg"
+            [formControlName]="controlNames.phone"
+          />
+        </div>
       </div>
 
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" />
+      <div class="mb-4 row">
+        <label [for]="controlNames.email" class="col-sm-3 col-form-label"
+          >Email</label
+        >
+        <div class="col-sm-9">
+          <input
+            type="email"
+            class="form-control"
+            [id]="controlNames.email"
+            [innerMsg]="msg"
+            [formControlName]="controlNames.email"
+          />
+        </div>
       </div>
 
-      <div class="mb-3">
-        <label for="formFile" class="form-label">Avatar</label>
-        <input class="form-control" type="file" id="formFile" />
+      <div class="mb-4 row">
+        <label [for]="avt" class="col-sm-3 col-form-label">Avatar</label>
+        <div class="col-sm-9">
+          <input
+            class="form-control"
+            type="file"
+            [id]="avt"
+            [name]="avt"
+            accept="image/*"
+            (change)="selectFile($event)"
+            hidden
+          />
+          <label [for]="avt">
+            <img class="img-preview" [src]="avt" alt="Update photo" />
+          </label>
+        </div>
       </div>
     </form>
   </div>
@@ -51,10 +114,17 @@
       type="button"
       class="btn btn-secondary"
       data-bs-dismiss="modal"
-      (click)="close(true)"
+      (click)="close()"
     >
       Close
     </button>
-    <button type="button" class="btn btn-primary">Update</button>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      form="doctorForm"
+      [disabled]="!this.doctorForm.valid"
+    >
+      Update
+    </button>
   </div>
 </div>

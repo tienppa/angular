@@ -1,3 +1,9 @@
 <div class="dashboard-page p-4">
-  <app-appointment-list></app-appointment-list>
+  <app-appointment-list
+    [items]="items"
+    (getItem$)="getAppointments()"
+    (deleteItem$)="deleteAppointment($event)"
+    (reload$)="reload()"
+  >
+  </app-appointment-list>
 </div>

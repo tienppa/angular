@@ -25,6 +25,7 @@
 .doctor-wrapper {
   .doctor-content {
     &__card {
+      min-height: 332px;
       background: $color-13;
       border-radius: 8px;
       padding: 30px 24px 20px;
@@ -110,11 +111,13 @@
     }
   }
 }
-
 .doctor-modify {
   @include font-styled(14px, 400, 17px);
   & input {
     @include font-styled(14px, 400, 30px);
+  }
+  & .img-preview {
+    @include width-height(60px, 60px);
   }
 }
 
@@ -123,4 +126,8 @@
 .btn.active:focus {
   outline: none;
   box-shadow: none;
+}
+
+.ngx-pagination {
+  padding: 0;
 }

@@ -8,8 +8,35 @@
   </div>
 
   <div class="doctor-content">
-    <div class="row gy-3">
-      <div class="col-12 col-md-3" *ngFor="let item of items; index as idx">
+    <div class="row gy-3" *ngIf="!isShow">
+      <div
+        class="col-12 col-md-3"
+        *ngFor="let item of [1, 2, 3, 4, 5, 6, 7, 8]"
+      >
+        <div class="doctor-content__card placeholder-glow">
+          <div class="doctor-content__avatar placeholder"></div>
+          <div class="doctor-content__heading">
+            <h5 class="heading-name">
+              <span class="placeholder col-7"></span>
+            </h5>
+            <span class="heading-desc placeholder col-9"></span>
+            <span class="heading-position placeholder col-5"></span>
+          </div>
+          <div class="doctor-content__footer">
+            <span class="heading-phone placeholder col-10"></span>
+            <span class="heading-email placeholder col-10"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row gy-3" *ngIf="isShow">
+      <div
+        class="col-12 col-md-3"
+        *ngFor="
+          let item of items | paginate: { itemsPerPage: 8, currentPage: p }
+        "
+      >
         <div class="doctor-content__card">
           <img
             [src]="item.avt"
@@ -39,7 +66,9 @@
               class="dropdown-menu dropdown-menu-end"
               aria-labelledby="dropdownMenuButton1"
             >
-              <li><a class="dropdown-item" (click)="open(content)">Edit</a></li>
+              <li>
+                <a class="dropdown-item" (click)="open(content, item)">Edit</a>
+              </li>
               <li>
                 <a class="dropdown-item" (click)="removeDoctor(item.id)"
                   >Remove</a
@@ -50,8 +79,18 @@
         </div>
       </div>
     </div>
+    <div class="row mt-4">
+      <pagination-controls
+        (pageChange)="p = $event"
+        class="d-flex justify-content-end"
+      ></pagination-controls>
+    </div>
   </div>
 </div>
-<ng-template #content (closeModal$)="close($event)">
-  <app-doctor-modify></app-doctor-modify>
+<ng-template #content>
+  <app-doctor-modify
+    (closeModal$)="close(content)"
+    [item]="selected"
+    (reload$)="reload()"
+  ></app-doctor-modify>
 </ng-template>

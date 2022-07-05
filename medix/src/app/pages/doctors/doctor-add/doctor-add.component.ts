@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BaseComponent } from 'src/app/shared/components/base.component';
 import { DoctorRequest } from 'src/app/shared/models/request/doctor.request';
 import { DoctorService } from 'src/app/shared/services/doctor.service';
 
@@ -8,8 +9,8 @@ import { DoctorService } from 'src/app/shared/services/doctor.service';
   selector: 'app-doctor-add',
   templateUrl: './doctor-add.component.html',
 })
-export class DoctorAddComponent implements OnInit {
-  public avt: any = './assets/images/no.png';
+export class DoctorAddComponent extends BaseComponent implements OnInit {
+  avt: any = './assets/images/no.png';
   doctorForm!: FormGroup;
 
   @Output() addDoctor$ = new EventEmitter<DoctorRequest.CreateDoctor>();
@@ -40,11 +41,18 @@ export class DoctorAddComponent implements OnInit {
     private builder: FormBuilder,
     private doctorService: DoctorService,
     private router: Router
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     const me = this;
     me.initForm();
+  }
+
+  onDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   onSubmit() {
@@ -102,5 +110,10 @@ export class DoctorAddComponent implements OnInit {
         console.log(err);
       },
     });
+  }
+
+  goToDoctor() {
+    const me = this;
+    me.router.navigate(['doctors']);
   }
 }

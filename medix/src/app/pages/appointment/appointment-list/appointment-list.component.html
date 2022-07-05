@@ -17,9 +17,21 @@
             class="dropdown-menu dropdown-menu-end"
             aria-labelledby="dropdownMenuButton1"
           >
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li>
+              <a class="dropdown-item" (click)="filterStatus('')"
+                >Select status</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="filterStatus(true)"
+                >Start Appointment</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="filterStatus(false)"
+                >Canceled</a
+              >
+            </li>
           </ul>
         </div>
 
@@ -37,13 +49,14 @@
             class="dropdown-menu dropdown-menu-end"
             aria-labelledby="dropdownMenuButton1"
           >
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item">Canceled</a></li>
+            <li><a class="dropdown-item">Start Appointment</a></li>
           </ul>
         </div>
 
-        <button class="btn">New Appointment</button>
+        <button type="button" class="btn" (click)="addNew(content)">
+          New Appointment
+        </button>
       </div>
     </div>
 
@@ -63,33 +76,46 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of [1, 2, 3, 4, 5]">
+              <tr
+                *ngFor="
+                  let item of filter
+                    | paginate: { itemsPerPage: 8, currentPage: p }
+                "
+              >
                 <td>
                   <img
-                    src="./assets/images/user.svg"
+                    [src]="item.avatar"
                     onerror="this.src='./assets/images/error.png'"
                     alt=""
                   />
-                  Mark
+                  {{ item.name }}
                 </td>
-                <td>09:00</td>
-                <td>28 May 2021</td>
-                <td>Male</td>
+                <td>{{ item.date | date: "H:mm" }}</td>
+                <td>{{ item.date | date: "d MMMM y" }}</td>
+                <td>{{ item.gender }}</td>
                 <td>888-452-420</td>
                 <td>
-                  <button class="btn btn-edit">
+                  <button
+                    class="btn btn-edit"
+                    (click)="open(content, item, false)"
+                  >
                     <i class="bi bi-pencil-square"></i>
                   </button>
-                  <button class="btn btn-user">
+                  <button
+                    class="btn btn-user"
+                    (click)="open(content, item, true)"
+                  >
                     <i class="bi bi-person"></i>
                   </button>
-                  <button class="btn btn-remove">
+                  <button class="btn btn-remove" (click)="deleteItem(item.id)">
                     <i class="bi bi-trash"></i>
                   </button>
                 </td>
                 <td>
-                  <span class="table-label" data-status="inactive"
-                    >Inactive</span
+                  <span
+                    class="table-label"
+                    [attr.data-status]="item.isAppointment"
+                    >{{ convertLabel(item.isAppointment) }}</span
                   >
                 </td>
               </tr>
@@ -98,5 +124,27 @@
         </div>
       </div>
     </div>
+
+    <div class="row mt-4">
+      <pagination-controls
+        (pageChange)="p = $event"
+        class="d-flex justify-content-end"
+      ></pagination-controls>
+    </div>
   </div>
 </div>
+<ng-template #content>
+  <app-appointment-modify
+    (closeModal$)="close(content)"
+    (reload$)="reload()"
+    [item]="selected"
+    [readonly]="readonly"
+    [isAdd]="isAdd"
+  ></app-appointment-modify>
+</ng-template>
+
+<!-- *ngFor="
+                  let item of filter.length != 0
+                    ? filter
+                    : (items | paginate: { itemsPerPage: 8, currentPage: p })
+                " -->

@@ -1,6 +1,6 @@
 <div class="doctor-add">
   <div class="doctor-add__heading mb-4">
-    <button class="btn">
+    <button class="btn" (click)="goToDoctor()">
       <i class="bi bi-back"></i>
       <span>Back</span>
     </button>
@@ -13,7 +13,6 @@
             [formGroup]="doctorForm"
             (ngSubmit)="onSubmit()"
             autocomplete="off"
-            class="needs-validation was-invalidated"
           >
             <div class="mb-4 row">
               <label [for]="controlNames.name" class="col-sm-2 col-form-label"

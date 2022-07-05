@@ -90,11 +90,11 @@
 }
 
 @mixin label-styled() {
-  &[data-status="active"] {
+  &[data-status="true"] {
     color: $color-active;
     background: rgba($color-active, 0.05);
   }
-  &[data-status="inactive"] {
+  &[data-status="false"] {
     color: $color-inactive;
     background: rgba($color-inactive, 0.05);
   }

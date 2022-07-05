@@ -75,7 +75,7 @@ export class InnerMsgDirective implements OnInit, OnDestroy {
     const div = document.createElement('div');
     div.classList.add(CLASS_NAME_MSG);
     div.innerHTML = `
-      <span style='color: #dc3545; font-size: .875em'>${msg}</span>
+      <span style='color: #dc3545; font-size: .875em; position: absolute'>${msg}</span>
     `;
     const me = this;
     (me.el.nativeElement as HTMLElement).parentElement?.appendChild(div);

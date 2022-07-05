@@ -94,6 +94,7 @@
       color: #454545;
     }
     .chat-input {
+      bottom: 20px;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -109,6 +110,12 @@
         @include width-height(34px, 34px);
         @include flex-center;
         display: inline-flex;
+        border-radius: 50%;
+        &:hover {
+          filter: brightness(90%);
+          cursor: pointer;
+          background: #d7dce2;
+        }
       }
       & > i {
         background: #796eff;
