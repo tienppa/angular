@@ -5,7 +5,9 @@
         <caption>
           <div class="d-flex align-items-center justify-content-between">
             <span>Department List</span>
-            <button class="btn btn-primary">Add Department</button>
+            <button class="btn btn-primary" (click)="openModal('add', item)">
+              Add Department
+            </button>
           </div>
         </caption>
         <thead>
@@ -21,33 +23,36 @@
         <tbody>
           <tr
             *ngFor="
-              let item of items | paginate: { itemsPerPage: 8, currentPage: p }
+              let item of items | paginate: { itemsPerPage: 8, currentPage: p };
+              index as idx
             "
           >
-            <th>ICU</th>
+            <th>{{ item.name }}</th>
             <td>
               <img
-                src="./assets/images/user.svg"
+                [src]="avt"
                 onerror="this.src='./assets/images/error.png'"
-                alt=""
+                alt="photo"
               />
-              Kicker Nicil
+              <span>Korae {{ idx + 1 }}</span>
             </td>
-            <td>Male</td>
-            <td>Heidry kon</td>
+            <td>{{ item.gender }}</td>
+            <td>{{ item.manager }}</td>
             <td>
-              <button class="btn btn-edit">
+              <button class="btn btn-edit" (click)="openModal('edit', item)">
                 <i class="bi bi-pencil-square"></i>
               </button>
-              <button class="btn btn-user">
+              <button class="btn btn-user" (click)="openModal('view', item)">
                 <i class="bi bi-person"></i>
               </button>
-              <button class="btn btn-remove">
+              <button class="btn btn-remove" (click)="delete(item.id)">
                 <i class="bi bi-trash"></i>
               </button>
             </td>
             <td>
-              <span class="table-label" data-status="false">Active</span>
+              <span class="table-label" [attr.data-status]="item.status">
+                {{ convertLabel(item.status) }}
+              </span>
             </td>
           </tr>
         </tbody>

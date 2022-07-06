@@ -1,3 +1,15 @@
 <div class="department-page p-4">
-  <app-department-table [items]="items"></app-department-table>
+  <app-department-table
+    [items]="items"
+    (delete$)="deleteDepartment($event)"
+    (open$)="open(content)"
+    [doctors]="doctors"
+    (edit$)="edit($event)"
+  ></app-department-table>
+  <ng-template #content>
+    <app-department-modify
+      [item]="item"
+      (close$)="close(content)"
+    ></app-department-modify>
+  </ng-template>
 </div>

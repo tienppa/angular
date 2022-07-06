@@ -78,8 +78,9 @@
             <tbody>
               <tr
                 *ngFor="
-                  let item of filter
-                    | paginate: { itemsPerPage: 8, currentPage: p }
+                  let item of filter.length != 0
+                    ? (filter | paginate: { itemsPerPage: 8, currentPage: p })
+                    : (items | paginate: { itemsPerPage: 8, currentPage: p })
                 "
               >
                 <td>
@@ -144,7 +145,6 @@
 </ng-template>
 
 <!-- *ngFor="
-                  let item of filter.length != 0
-                    ? filter
-                    : (items | paginate: { itemsPerPage: 8, currentPage: p })
-                " -->
+                let item of filter 
+                  | paginate: { itemsPerPage: 8, currentPage: p }
+              " -->

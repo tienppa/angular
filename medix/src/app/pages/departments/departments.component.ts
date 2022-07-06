@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { DepartmentModel } from 'src/app/shared/models/department.model';
+import { DoctorModel } from 'src/app/shared/models/doctor.model';
 import { DepartmentRequest } from 'src/app/shared/models/request/department.request';
 import { DepartmentService } from 'src/app/shared/services/department.service';
+import { DoctorService } from 'src/app/shared/services/doctor.service';
 
 @Component({
   selector: 'app-departments',
@@ -10,14 +13,24 @@ import { DepartmentService } from 'src/app/shared/services/department.service';
 })
 export class DepartmentsComponent extends BaseComponent implements OnInit {
   public items: DepartmentModel.DepartmentInfo[] = [];
+  public item!: DepartmentModel.DepartmentInfo;
+  public doctors: DoctorModel.DoctorInfo[] = [];
 
-  constructor(private departmentService: DepartmentService) {
+  constructor(
+    private departmentService: DepartmentService,
+    private doctorService: DoctorService,
+    config: NgbModalConfig,
+    private modalService: NgbModal
+  ) {
     super();
+    config.backdrop = 'static';
+    config.keyboard = false;
   }
 
   ngOnInit() {
     const me = this;
     me.getDepartments();
+    me.getDoctors();
   }
 
   onDestroy(): void {
@@ -30,6 +43,18 @@ export class DepartmentsComponent extends BaseComponent implements OnInit {
     me.departmentService.getDepartments().subscribe({
       next: (res) => {
         me.items = [...(res as any)];
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  getDoctors() {
+    const me = this;
+    me.doctorService.getDoctors().subscribe({
+      next: (res) => {
+        me.doctors = [...(res as any)];
       },
       error: (err) => {
         console.log(err);
@@ -71,5 +96,25 @@ export class DepartmentsComponent extends BaseComponent implements OnInit {
         console.log(err);
       },
     });
+  }
+
+  close(content: any) {
+    const me = this;
+    me.modalService.dismissAll(content);
+    console.log('close');
+  }
+
+  open(content: any) {
+    const me = this;
+    me.modalService.open(content);
+  }
+
+  edit(content: any) {
+    const me = this;
+    me.item = content;
+  }
+
+  add(content: any) {
+    console.log(content);
   }
 }

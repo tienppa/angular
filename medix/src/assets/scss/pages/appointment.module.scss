@@ -67,3 +67,10 @@
     }
   }
 }
+
+#appointmentForm {
+  @include font-styled(14px, 400, 17px);
+  & input {
+    @include font-styled(14px, 400, 30px);
+  }
+}

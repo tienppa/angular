@@ -1,3 +1,126 @@
-<p>
-  department-modify works!
-</p>
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Department</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="close()"
+  ></button>
+</div>
+<div class="modal-body">
+  <form
+    autocomplete="off"
+    id="departmentForm"
+    [formGroup]="departmentForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="mb-4 row">
+      <label [for]="controlNames.name" class="col-sm-3 col-form-label"
+        >Name</label
+      >
+      <div class="col-sm-9">
+        <input
+          type="text"
+          class="form-control"
+          [id]="controlNames.name"
+          [innerMsg]="msg"
+          [formControlName]="controlNames.name"
+        />
+      </div>
+    </div>
+
+    <div class="mb-4 row">
+      <label [for]="controlNames.doctorId" class="col-sm-3 col-form-label"
+        >Doctor</label
+      >
+      <div class="col-sm-9">
+        <img
+          [src]="avt"
+          alt=""
+          style="width: 60px; height: 60px; border-radius: 50%"
+          class="mb-2"
+        />
+        <select
+          class="form-select"
+          [id]="controlNames.doctorId"
+          [name]="controlNames.doctorId"
+          [innerMsg]="msg"
+          [formControlName]="controlNames.doctorId"
+          [ngModel]="selection"
+          (ngModelChange)="onChange($event)"
+        >
+          <option *ngFor="let item of doctors; index as idx" [value]="item.id">
+            {{ item.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="mb-4 row">
+      <label [for]="controlNames.gender" class="col-sm-3 col-form-label"
+        >Gender</label
+      >
+      <div class="col-sm-9">
+        <input
+          type="text"
+          class="form-control"
+          [id]="controlNames.gender"
+          [innerMsg]="msg"
+          [formControlName]="controlNames.gender"
+        />
+      </div>
+    </div>
+
+    <div class="mb-4 row">
+      <label [for]="controlNames.manager" class="col-sm-3 col-form-label"
+        >Manager</label
+      >
+      <div class="col-sm-9">
+        <input
+          type="text"
+          class="form-control"
+          [id]="controlNames.manager"
+          [innerMsg]="msg"
+          [formControlName]="controlNames.manager"
+        />
+      </div>
+    </div>
+    <div class="mb-4 row">
+      <label [for]="controlNames.status" class="col-sm-3 col-form-label"
+        >Status</label
+      >
+      <div class="col-sm-9">
+        <select
+          class="form-select"
+          [id]="controlNames.status"
+          [innerMsg]="msg"
+          [formControlName]="controlNames.status"
+        >
+          <option [ngValue]="true">Active</option>
+          <option [ngValue]="false">Inactive</option>
+        </select>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+    type="submit"
+    class="btn btn-primary"
+    form="departmentForm"
+    [disabled]="!departmentForm.valid"
+  >
+    Update Department
+  </button>
+
+  <button
+    type="submit"
+    class="btn btn-primary"
+    form="departmentForm"
+    [disabled]="!departmentForm.valid"
+  >
+    Add Department
+  </button>
+</div>
+
+<!-- [ngModel]="item.date | slice: 0:16" -->

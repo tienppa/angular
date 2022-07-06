@@ -17,7 +17,7 @@ export class AppointmentListComponent extends BaseComponent implements OnInit {
   selected!: AppointmentModel.AppointmentInfo;
   readonly: boolean = false;
   isAdd: boolean = false;
-  filter: AppointmentModel.AppointmentInfo[] = this.items;
+  filter: AppointmentModel.AppointmentInfo[] = [];
 
   p: number = 1;
 
@@ -29,6 +29,7 @@ export class AppointmentListComponent extends BaseComponent implements OnInit {
 
   ngOnInit() {
     const me = this;
+    me.filter = me.items;
     if (me.items) {
       me.filter = me.items;
     }
