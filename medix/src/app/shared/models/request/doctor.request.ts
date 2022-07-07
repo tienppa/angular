@@ -6,6 +6,7 @@ export namespace DoctorRequest {
     position: string;
     phone: string;
     email: string;
+    status: boolean;
   }
 
   export interface UpdateDoctor {
@@ -15,5 +16,6 @@ export namespace DoctorRequest {
     position: string;
     phone: string;
     email: string;
+    status: boolean;
   }
 }

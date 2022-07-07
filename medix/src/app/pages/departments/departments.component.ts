@@ -15,6 +15,7 @@ export class DepartmentsComponent extends BaseComponent implements OnInit {
   public items: DepartmentModel.DepartmentInfo[] = [];
   public item!: DepartmentModel.DepartmentInfo;
   public doctors: DoctorModel.DoctorInfo[] = [];
+  public action!: string;
 
   constructor(
     private departmentService: DepartmentService,
@@ -74,9 +75,9 @@ export class DepartmentsComponent extends BaseComponent implements OnInit {
     });
   }
 
-  updateDepartment(id: string, data: DepartmentRequest.UpdateDepartment) {
+  updateDepartment(data: DepartmentRequest.UpdateDepartment) {
     const me = this;
-    me.departmentService.updateDepartment(id, data).subscribe({
+    me.departmentService.updateDepartment(me.item?.id, data).subscribe({
       next: (res) => {
         me.getDepartments();
       },
@@ -101,7 +102,6 @@ export class DepartmentsComponent extends BaseComponent implements OnInit {
   close(content: any) {
     const me = this;
     me.modalService.dismissAll(content);
-    console.log('close');
   }
 
   open(content: any) {
@@ -109,12 +109,14 @@ export class DepartmentsComponent extends BaseComponent implements OnInit {
     me.modalService.open(content);
   }
 
-  edit(content: any) {
+  setAction(content: string) {
     const me = this;
-    me.item = content;
+    me.action = content;
   }
 
-  add(content: any) {
-    console.log(content);
+  setDepartment(content: DepartmentModel.DepartmentInfo) {
+    const me = this;
+    if (!content) return;
+    me.item = content;
   }
 }

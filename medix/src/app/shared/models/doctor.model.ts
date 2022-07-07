@@ -6,6 +6,7 @@ export namespace DoctorModel {
     position?: string;
     phone?: string;
     email?: string;
+    status?: boolean;
     id: string;
   }
 }

@@ -7,7 +7,7 @@
     (click)="close()"
   ></button>
 </div>
-<div class="modal-body">
+<div class="modal-body mb-3">
   <form
     autocomplete="off"
     id="departmentForm"
@@ -36,18 +36,42 @@
       <div class="col-sm-9">
         <img
           [src]="avt"
+          [id]="controlNames.doctorAvatar"
           alt=""
           style="width: 60px; height: 60px; border-radius: 50%"
           class="mb-2"
         />
+
+        <input
+          type="text"
+          class="form-control mb-2"
+          [id]="controlNames.doctorName"
+          [innerMsg]="msg"
+          [formControlName]="controlNames.doctorName"
+          *ngIf="action !== 'add'"
+          readonly
+        />
+
+        <input
+          type="text"
+          class="form-control mb-2"
+          [id]="controlNames.doctorId"
+          [innerMsg]="msg"
+          [formControlName]="controlNames.doctorId"
+          readonly
+          hidden
+          *ngIf="action !== 'add'"
+        />
+
         <select
           class="form-select"
           [id]="controlNames.doctorId"
           [name]="controlNames.doctorId"
           [innerMsg]="msg"
           [formControlName]="controlNames.doctorId"
-          [ngModel]="selection"
+          [ngModel]="select"
           (ngModelChange)="onChange($event)"
+          *ngIf="action != 'view'"
         >
           <option *ngFor="let item of doctors; index as idx" [value]="item.id">
             {{ item.name }}
@@ -61,13 +85,31 @@
         >Gender</label
       >
       <div class="col-sm-9">
-        <input
-          type="text"
-          class="form-control"
+        <select
+          class="form-select"
           [id]="controlNames.gender"
           [innerMsg]="msg"
           [formControlName]="controlNames.gender"
-        />
+          *ngIf="action === 'add'; else Gender"
+        >
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="MTF">MTF</option>
+          <option value="Trans">Trans</option>
+          <option value="Female to Male">Female to Male</option>
+          <option value="Cisgender Man">Cisgender Man</option>
+          <option value="Trans Male">Trans Male</option>
+        </select>
+
+        <ng-template #Gender>
+          <input
+            type="text"
+            class="form-control"
+            [id]="controlNames.gender"
+            [innerMsg]="msg"
+            [formControlName]="controlNames.gender"
+          />
+        </ng-template>
       </div>
     </div>
 
@@ -103,24 +145,35 @@
     </div>
   </form>
 </div>
-<div class="modal-footer">
+<div class="modal-footer" *ngIf="action !== 'view'">
   <button
     type="submit"
     class="btn btn-primary"
     form="departmentForm"
     [disabled]="!departmentForm.valid"
+    *ngIf="action === 'edit'; else Add"
   >
     Update Department
   </button>
-
-  <button
-    type="submit"
-    class="btn btn-primary"
-    form="departmentForm"
-    [disabled]="!departmentForm.valid"
-  >
-    Add Department
-  </button>
+  <ng-template #Add>
+    <button
+      type="reset"
+      class="btn btn-secondary"
+      form="departmentForm"
+      *ngIf="action === 'add'"
+    >
+      Reset
+    </button>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      form="departmentForm"
+      [disabled]="!departmentForm.valid"
+      *ngIf="action === 'add'"
+    >
+      Add Department
+    </button>
+  </ng-template>
 </div>
 
 <!-- [ngModel]="item.date | slice: 0:16" -->

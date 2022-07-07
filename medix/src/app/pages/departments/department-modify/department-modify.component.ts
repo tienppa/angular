@@ -13,17 +13,22 @@ import { DoctorService } from 'src/app/shared/services/doctor.service';
 export class DepartmentModifyComponent extends BaseComponent implements OnInit {
   @Output() open$ = new EventEmitter();
   @Output() close$ = new EventEmitter();
+  @Output() add$ = new EventEmitter();
+  @Output() edit$ = new EventEmitter();
 
   @Input() item!: DepartmentModel.DepartmentInfo;
+  @Input() action: string = '';
 
   departmentForm!: FormGroup;
-  selection!: any;
+  select!: any;
   avt: any = './assets/images/no.png';
   doctors: DoctorModel.DoctorInfo[] = [];
 
   controlNames = {
     name: 'name',
-    doctorId: 'doctorName',
+    doctorId: 'doctorId',
+    doctorName: 'doctorName',
+    doctorAvatar: 'doctorAvatar',
     gender: 'gender',
     manager: 'manager',
     status: 'status',
@@ -46,9 +51,12 @@ export class DepartmentModifyComponent extends BaseComponent implements OnInit {
     const me = this;
     me.getDoctors();
     me.initForm();
-    me.departmentForm.patchValue(me.item);
-    me.selection = me.item.doctorId;
-    console.log(me.selection);
+    if (me.action != 'add') {
+      me.departmentForm.patchValue(me.item);
+      me.avt = me.item.doctorAvatar;
+    }
+    me.select = me.item?.doctorId;
+    console.log(me.action);
   }
 
   onDestroy(): void {
@@ -62,6 +70,7 @@ export class DepartmentModifyComponent extends BaseComponent implements OnInit {
     me.departmentForm = me.builder.group({
       [me.controlNames.name]: ['', [Validators.required]],
       [me.controlNames.doctorId]: ['', [Validators.required]],
+      [me.controlNames.doctorName]: ['', [Validators.required]],
       [me.controlNames.gender]: ['', [Validators.required]],
       [me.controlNames.manager]: ['', [Validators.required]],
       [me.controlNames.status]: ['', [Validators.required]],
@@ -82,6 +91,18 @@ export class DepartmentModifyComponent extends BaseComponent implements OnInit {
 
   onSubmit() {
     const me = this;
+    if (!me.departmentForm.valid) return;
+    const data = {
+      ...me.departmentForm.value,
+      doctorAvatar: me.avt,
+    };
+    if (me.action === 'add') {
+      me.add$.emit(data);
+    } else {
+      me.edit$.emit(data);
+    }
+    me.close();
+    // cach dong o cha
   }
 
   close() {
@@ -96,11 +117,13 @@ export class DepartmentModifyComponent extends BaseComponent implements OnInit {
 
   onChange(event: any) {
     const me = this;
-    if (me.selection === event) return;
-    me.selection = event;
+    if (me.select === event) return;
+    me.select = event;
     if (me.doctors) {
       let result = me.doctors.filter((el) => el.id === event);
       me.avt = result[0].avt;
+      me.departmentForm.get('doctorName')?.setValue(result[0].name);
+      me.departmentForm.get('doctorId')?.setValue(result[0].id);
     }
   }
 }

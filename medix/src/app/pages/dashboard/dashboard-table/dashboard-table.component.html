@@ -18,29 +18,47 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>Thornton</td>
-                <td>@fat</td>
+              <tr *ngFor="let item of patients | slice: 0:5; index as idx">
+                <th scope="row">{{ idx + 1 }}</th>
+                <td>
+                  <img
+                    [src]="item.avatar"
+                    alt=""
+                    style="width: 40px; height: 40px"
+                    class="me-2"
+                  />
+                  {{ item.name }}
+                </td>
+                <td>{{ item.date | date: "d MMM y" }}</td>
+                <td>{{ item.disease }}</td>
+                <td>{{ item.room }}</td>
+                <td>
+                  <div class="dropdown">
+                    <button
+                      class="btn"
+                      type="button"
+                      id="dropdownMenuButton1"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="bi bi-three-dots"></i>
+                    </button>
+                    <ul
+                      class="dropdown-menu dropdown-menu-end"
+                      aria-labelledby="dropdownMenuButton1"
+                    >
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li>
+                        <a class="dropdown-item" href="#">Another action</a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#"
+                          >Something else here</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -57,18 +75,26 @@
             </caption>
             <thead>
               <tr>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th style="background: transparent" scope="col">Doctor Name</th>
+                <th style="background: transparent" scope="col">Status</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <td>Thornton</td>
-                <td>@fat</td>
+              <tr *ngFor="let item of doctors | slice: 0:5">
+                <td>
+                  <img
+                    [src]="item.avt"
+                    alt=""
+                    style="width: 40px; height: 40px"
+                    class="me-2"
+                  />
+                  {{ item.name }}
+                </td>
+                <td>
+                  <span class="table-label" [attr.data-status]="item.status">{{
+                    convertLabel(item.status)
+                  }}</span>
+                </td>
               </tr>
             </tbody>
           </table>

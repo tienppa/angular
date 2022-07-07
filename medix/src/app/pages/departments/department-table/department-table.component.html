@@ -30,11 +30,11 @@
             <th>{{ item.name }}</th>
             <td>
               <img
-                [src]="avt"
+                [src]="item.doctorAvatar"
                 onerror="this.src='./assets/images/error.png'"
                 alt="photo"
               />
-              <span>Korae {{ idx + 1 }}</span>
+              <span>{{ item.doctorName }}</span>
             </td>
             <td>{{ item.gender }}</td>
             <td>{{ item.manager }}</td>

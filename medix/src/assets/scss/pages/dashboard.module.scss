@@ -99,6 +99,10 @@
       }
     }
   }
+  .table-label {
+    @include font-styled(12px, 400, 15px);
+    @include label-styled;
+  }
 }
 
 .dashboard-chart {

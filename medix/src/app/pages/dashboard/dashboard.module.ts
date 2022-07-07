@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { DoctorService } from 'src/app/shared/services/doctor.service';
+import { PatientService } from 'src/app/shared/services/patient.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { DashboardBoxComponent } from './dashboard-box/dashboard-box.component';
 import { DashboardChartComponent } from './dashboard-chart/dashboard-chart.component';
@@ -20,6 +22,6 @@ const imports: any = [SharedModule, CommonModule, DashboardRouters];
   imports: [...imports],
   exports: [...declarations, ...imports],
   declarations: [...declarations],
-  providers: [],
+  providers: [DoctorService, PatientService],
 })
 export class DashboardModule {}

@@ -14,7 +14,8 @@ export class DepartmentTableComponent extends BaseComponent implements OnInit {
   @Output() delete$ = new EventEmitter<string>();
   @Output() open$ = new EventEmitter();
 
-  @Output() edit$ = new EventEmitter<DepartmentModel.DepartmentInfo>();
+  @Output() action$ = new EventEmitter<string>();
+  @Output() department$ = new EventEmitter<DepartmentModel.DepartmentInfo>();
 
   p: number = 1;
   avt: string = './assets/images/no.png';
@@ -45,10 +46,8 @@ export class DepartmentTableComponent extends BaseComponent implements OnInit {
 
   openModal(status: string, item?: DepartmentModel.DepartmentInfo) {
     const me = this;
-    if (status === 'add') {
-    } else if (status === 'edit') {
-      me.edit$.emit(item);
-    }
+    me.action$.emit(status);
+    me.department$.emit(item);
     me.open();
   }
 
